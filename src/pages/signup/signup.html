@@ -1,17 +1,15 @@
 <ion-header>
-    <ion-navbar>
-      <ion-title>Nouveau compte</ion-title>
-    </ion-navbar>
-  </ion-header>
+  <ion-navbar>
+    <ion-title>Nouveau compte</ion-title>
+  </ion-navbar>
+</ion-header>
   
-  
-  <ion-content padding>
-    <ion-list>
-        <ion-item>
-          <button ion-button full (click)="scan()">Scanner le QR Code</button>
-        </ion-item>
-    </ion-list>
-    <form #form="ngForm" (ngSubmit)="signup(form.value)" novalidate>
+
+<ion-content padding>
+    <button ion-button full class="scan-qr-code" (click)="scan()">Scanner le QR Code</button>
+    <!--this text will be moved from here-->
+    Scanned data : {{scannedData.text}}
+  <form #form="ngForm" (ngSubmit)="signup(form.value)" novalidate>
       <ion-list>
         <ion-item>
           <ion-label floating>Nom</ion-label>
@@ -65,4 +63,4 @@
         </div>
       </ion-list>
     </form>
-  </ion-content>
+</ion-content>
