@@ -1,0 +1,68 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>Nouveau compte</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  
+  <ion-content padding>
+    <form #form="ngForm" (ngSubmit)="signup(form.value)" novalidate>
+      <ion-list>
+          <ion-item>
+              <ion-label floating>Identifiant de la carte</ion-label>
+              <ion-input type="text" name="idCarte" ngModel required #idCarte="ngModel"
+                         [class.invalid]="idCarte.errors && idCarte.dirty"></ion-input>
+            </ion-item>
+        <ion-item>
+          <ion-label floating>Nom</ion-label>
+          <ion-input type="text" name="nom" ngModel required #nom="ngModel"
+                     [class.invalid]="nom.errors && nom.dirty"></ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="nom.errors?.required && nom.dirty">
+            Nom obligatoire
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Prénom</ion-label>
+          <ion-input type="text" name="prenom" ngModel required #prenom="ngModel"
+                     [class.invalid]="prenom.errors && prenom.dirty"></ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="prenom.errors?.required && prenom.dirty">
+          Prénom obligatoire
+        </ion-item>
+  
+        <ion-item>
+          <ion-label floating>Email</ion-label>
+          <ion-input type="email" name="email" ngModel required email #email="ngModel"
+                     [class.invalid]="email.errors && email.dirty"></ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="email.errors?.required && email.dirty">
+          Email obligatoire
+        </ion-item>
+        <ion-item class="error-message" *ngIf="email.errors?.email && email.dirty">
+          Format invalide
+        </ion-item>
+   
+        <ion-item>
+          <ion-label floating>Mot de passe</ion-label>
+          <ion-input type="password" name="password" ngModel required #password="ngModel" (ngModelChange)="onPasswordChange($event,confirmPassword)"
+                     [class.invalid]="password.errors && password.dirty"></ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="password.errors?.required && password.dirty">
+          Mot de passe obligatoire
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Confirmer le mot de passe</ion-label>
+            <ion-input type="password" name="confirmPassword" ngModel required #confirmPassword="ngModel" (ngModelChange)="onConfirmPasswordChange($event,password)"
+                       [class.invalid]="confirmPassword.errors && confirmPassword.dirty"></ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="confirmPassword.errors?.required && confirmPassword.dirty">
+            Mot de passe obligatoire
+          </ion-item>
+        <div padding>
+          <button ion-button color="primary" block type="submit" [disabled]="!form.valid || passwordNotMatching">Valider</button>
+        </div>
+      </ion-list>
+    </form>
+  </ion-content>

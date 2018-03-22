@@ -1,0 +1,81 @@
+<ion-header>
+  <div class="page-header">
+    <div class="img-container">
+      <img class="image-header" src="assets/images/banner.jpg">
+    </div>    
+    <div class="block-title-container">
+      <span class="block-title">
+        Menu
+        <ion-icon class="block-title-icon" name="md-arrow-dropdown"></ion-icon>
+      </span>
+    </div>
+  </div>
+</ion-header>
+
+<ion-content>
+      <div class="menu-icons-container">
+        <ion-row >
+          <ion-col class="icon-col">
+            <ion-icon class="home-menu-icon" class="indicator-icon" name="thermometer"></ion-icon>
+            <span class="icon-col-title" *ngIf="showTemperature == false ; else tempBlock"> Non disponible </span>
+            <ng-template #tempBlock>
+              <span class="icon-col-title">{{potagerIndicator?.temperature}}°C</span>
+            </ng-template>
+          </ion-col>
+
+          <ion-col class="icon-col">
+            <ion-icon class="home-menu-icon" class="indicator-icon" name="umbrella"></ion-icon>
+            <span class="icon-col-title" *ngIf="showHumidity == false ; else humBlock"> Non disponible </span>
+            <ng-template #humBlock>
+              <span class="icon-col-title">{{potagerIndicator?.humidity}}%</span>
+            </ng-template>
+          </ion-col>
+
+          <ion-col class="icon-col">
+            <ion-icon class="home-menu-icon"  class="indicator-icon" name="water"></ion-icon>
+            <span class="icon-col-title" *ngIf="showWater == false ; else waterBlock"> Non disponible </span>
+            <ng-template #waterBlock>
+              <span class="icon-col-title">{{potagerIndicator?.water}} L</span>
+            </ng-template>
+          </ion-col>
+
+          <ion-col class="icon-col">
+              <ion-icon class="home-menu-icon"  class="indicator-icon" name="sunny"></ion-icon>
+              <span class="icon-col-title" *ngIf="showLight == false ; else lightBlock"> Non disponible </span>
+              <ng-template #lightBlock>
+                  <span class="icon-col-title">{{potagerIndicator?.water}} L</span>
+                </ng-template>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div>
+        <ion-list>
+          <ion-list-header>Tâches à faire: </ion-list-header>
+          <div *ngFor="let event of listOfUndoneTasks ;  let i = index" [attr.data-index]="i">
+            <ion-item-sliding #item>
+              <ion-item>
+                <span class="event-title">{{event.label}}</span> <br>
+                <span class="event-when-to">Du {{event.dateDebut | date:'yyyy-MM-dd'}} au {{event.dateFin | date:'yyyy-MM-dd'}}</span>
+              </ion-item>
+              <ion-item-options side="right">
+                <button ion-button (click)="markEventAsDone(event,i)" class="done-task-btn">Fait</button>
+                </ion-item-options>
+            </ion-item-sliding>
+          </div>
+        </ion-list>
+      </div>
+      <div>
+        <ion-list>
+          <ion-list-header>Tâches faites: </ion-list-header>
+            <div *ngFor="let event of listOfDoneTasks">
+              <ion-item-sliding #item>
+                <ion-item>
+                  <span class="event-title">{{event.label}}</span> <br>
+                  <span class="event-when-to">Du {{event.dateDebut | date:'yyyy-MM-dd'}} au {{event.dateFin | date:'yyyy-MM-dd'}}</span>
+                </ion-item>
+              </ion-item-sliding>
+            </div>
+          </ion-list>
+        </div>
+</ion-content>
