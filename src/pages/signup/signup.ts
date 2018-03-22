@@ -6,6 +6,7 @@ import {finalize} from 'rxjs/operators/finalize';
 import { NavController } from 'ionic-angular';
 import {User} from '../../models/User'
 import {LoginPage} from '../login/login';
+import {BarcodeScanner, BarcodeScannerOptions} from '@ionic-native/barcode-scanner';
 
 @Component({
   selector: 'page-signup',
@@ -18,17 +19,33 @@ export class SignupPage {
   usernameModel: NgModel;
 
   public passwordNotMatching : Boolean = true;
-
+  public notyetscanned : Boolean = true;
+  scannedData:any = {};
   constructor(private readonly authProvider: AuthProvider,
               private readonly loadingCtrl: LoadingController,
-              private readonly toastCtrl: ToastController,private navCtrl:NavController) {
+              private readonly toastCtrl: ToastController,private navCtrl:NavController,private scanner:BarcodeScanner) {}
 
-                 
+  //QR CODE scanner
+  scan()
+  {
+    this.scanner.scan().then((data) => {
+      //si tout est ok
+      this.scannedData = data;
+      this.notyetscanned = false;
+    } 
+    , (err) => {
+        const toast = this.toastCtrl.create({
+          message : "Erreur lors de l'ouverture de la caméra",
+          duration: 5000,
+          position: 'bottom'
+        })
+        toast.present()
+    });
   }
 
   signup(value: any) 
   {
-      let user = new User(value.nom , value.prenom , value.email , value.password , value.idCarte , null);
+      let user = new User(value.nom , value.prenom , value.email , value.password , this.scannedData.text , null);
      
       let loading = this.loadingCtrl.create({
         spinner: 'bubbles',

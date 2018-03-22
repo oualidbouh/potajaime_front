@@ -6,13 +6,13 @@
   
   
   <ion-content padding>
+    <ion-list>
+        <ion-item>
+          <button ion-button full (click)="scan()">Scanner le QR Code</button>
+        </ion-item>
+    </ion-list>
     <form #form="ngForm" (ngSubmit)="signup(form.value)" novalidate>
       <ion-list>
-          <ion-item>
-              <ion-label floating>Identifiant de la carte</ion-label>
-              <ion-input type="text" name="idCarte" ngModel required #idCarte="ngModel"
-                         [class.invalid]="idCarte.errors && idCarte.dirty"></ion-input>
-            </ion-item>
         <ion-item>
           <ion-label floating>Nom</ion-label>
           <ion-input type="text" name="nom" ngModel required #nom="ngModel"
@@ -61,7 +61,7 @@
             Mot de passe obligatoire
           </ion-item>
         <div padding>
-          <button ion-button color="primary" block type="submit" [disabled]="!form.valid || passwordNotMatching">Valider</button>
+          <button ion-button color="primary" block type="submit" [disabled]="!form.valid || passwordNotMatching || notyetscanned">Valider</button>
         </div>
       </ion-list>
     </form>

@@ -4,7 +4,7 @@ import {SignupPage} from "../signup/signup";
 import {AuthProvider} from "../../providers/auth/auth";
 import {finalize} from 'rxjs/operators/finalize';
 import { TabsPage } from '../tabs/tabs';
-import {BarcodeScanner, BarcodeScannerOptions} from '@ionic-native/barcode-scanner';
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
@@ -15,21 +15,11 @@ export class LoginPage {
   constructor(private readonly navCtrl: NavController,
               private readonly loadingCtrl: LoadingController,
               private readonly authProvider: AuthProvider,
-              private readonly toastCtrl: ToastController,public scanner : BarcodeScanner) {
+              private readonly toastCtrl: ToastController) {
   }
 
   signup() {
     this.navCtrl.push(SignupPage);
-  }
-
-  scan()
-  {
-    this.scanner.scan().then((data) => {
-      this.message = data;
-    } 
-    , (err) => {
-
-    });
   }
 
   login(value: any) {
