@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Tutoriels</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngFor="let t of tutorials ;  let i = index" [attr.data-index]="i">
+  <ion-card>
+    <ion-item text-center center>
+      <h2>{{t.title}}</h2>
+    </ion-item>
+    <img src="{{t.imageLink}}" (click)="startVideo(t)">
+    <ion-row>
+      <ion-col>
+        <span>{{t.description}}</span>
+      </ion-col>
+      <ion-col>
+        
+      </ion-col>
+      <ion-col center text-center>
+        <ion-note>
+          {{t.date | date:'yyyy-MM-dd'}}
+        </ion-note>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  </div>
+</ion-content>
