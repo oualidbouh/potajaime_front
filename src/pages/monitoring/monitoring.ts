@@ -3,6 +3,8 @@ import { NavController } from 'ionic-angular';
 import {PotagerIndicatorProvider} from '../../providers/potager-indicator/potager-indicator';
 import {AuthProvider} from '../../providers/auth/auth';
 import { HomePageModel } from '../../models/HomePageModel';
+import * as HighCharts from 'highcharts';
+import {Statistics} from '../../models/Statistics';
 
 @Component({
   selector: 'page-about',
@@ -13,30 +15,42 @@ import { HomePageModel } from '../../models/HomePageModel';
 export class MonitoringPage {
 
 
-  potagerIndicator:HomePageModel;
-
-  gaugeType = "semi";
-
-  gaugeValue = 25;
-  gaugeLabel = "Température";
-  gaugeAppendText = "°C";
-
-  gaugeValue1 = 70;
-  gaugeLabel1 = "Humidité";
-  gaugeAppendText1 = "%";
-
-  gaugeLabel2 = "Niveau d'eau";
-  gaugeAppendText2 = "L";
-  waterLevel = 3.5;
-
-  thresholds = {"0": {color : "#00c1ff"},"10": {color: " 	#00c1ff"},"20": {color: "#00FF7F"},"30": {color: "red"}};
-  thresholdsHumidity = {"0": {color : "#00c1ff"},"50": {color: " 	#f04444"}};
+   potagerIndicator:HomePageModel;
 
   //potagerIndicator : PotagerIndicator[]
-  
+  statistics : Statistics;
   constructor(public navCtrl: NavController, public potagerIndicatorProvider : PotagerIndicatorProvider, public authProvider:AuthProvider) {
-    //potagerIndicatorProvider.getPotagerIndicator().subscribe( data => {this.potagerIndicator = data;});
-    //this.potagerIndicator = potagerIndicatorProvider.getPotagerLastIndicator();
-    //console.log(this.potagerIndicator);
+    
+  }
+
+  ionViewDidLoad()
+  {
+    this.potagerIndicatorProvider.getPotagerIndicators().subscribe(data =>{
+      this.statistics = data;
+      var myChart = HighCharts.chart('container', {
+        chart: {
+        type: 'spline'
+        },
+        title: {
+        text: 'Monitoring'
+        },
+        xAxis: {
+        categories: []
+        },
+        yAxis: {
+        title: {
+        text: ''
+        }
+        },
+        series: [{
+        name: 'Température',
+        data: this.statistics.temperatures
+        }, {
+        name: 'Humidité',
+        data: this.statistics.humidities
+        }]
+        });
+    });
+
   }
 }

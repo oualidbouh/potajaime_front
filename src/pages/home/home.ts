@@ -29,22 +29,17 @@ export class HomePage {
 
     this.listOfDoneTasks = new Array<Evenement>();
     this.listOfUndoneTasks = new Array<Evenement>();
-    this.authProvider.authUser.subscribe(jwt => {
-      if (jwt) {
-        const decoded = jwtHelper.decodeToken(jwt);
-        this.user = decoded.sub;
-        this.authProvider.storage.get(this.authProvider.idPotagerKey).then(idPotager => {
-          this.potagerProvider.getPotagerLastIndicator(idPotager).subscribe(data => {
-            this.potagerIndicator = data;
-            console.log(data);
-            if(this.potagerIndicator.humidity == this.NULL_DATA_VALUES_FROM_BACKEND)
-            {
-              this.showHumidity = false;
-            }
-            if(this.potagerIndicator.temperature == this.NULL_DATA_VALUES_FROM_BACKEND)
-            {
-              this.showTemperature = false;
-            }
+    
+    this.potagerProvider.getPotagerLastIndicator().subscribe(data => {
+        this.potagerIndicator = data;
+        if(this.potagerIndicator.humidity == this.NULL_DATA_VALUES_FROM_BACKEND)
+        {
+          this.showHumidity = false;
+        }
+        if(this.potagerIndicator.temperature == this.NULL_DATA_VALUES_FROM_BACKEND)
+        {
+          this.showTemperature = false;
+        }
             if(this.potagerIndicator.water == this.NULL_DATA_VALUES_FROM_BACKEND)
             {
               this.showWater = false;
@@ -57,12 +52,8 @@ export class HomePage {
             this.listOfDoneTasks = this.potagerIndicator.evenements.filter(e => e.done == true);
             this.listOfUndoneTasks = this.potagerIndicator.evenements.filter(e => e.done == false);
           });
-        });
-      }
-      else {
-        this.user = null;
-      }
-    });    
+  
+   
   }
 
   markEventAsDone(event,index)

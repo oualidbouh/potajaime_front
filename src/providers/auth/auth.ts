@@ -35,6 +35,7 @@ export class AuthProvider {
 
   logout() {
     this.storage.remove(this.jwtTokenName).then(() => this.authUser.next(null));
+    this.storage.remove(this.idPotagerKey);
   }
 
   signup(values: any): Observable<any> {

@@ -8,7 +8,6 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import {LoginPage} from '../pages/login/login';
 import { StatusBar } from '@ionic-native/status-bar';
-import {TutorielsPage} from '../pages/tutoriels/tutoriels';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { PotagerIndicatorProvider } from '../providers/potager-indicator/potager-indicator';
 import {HttpModule} from '@angular/http';
@@ -18,11 +17,14 @@ import { AuthProvider } from '../providers/auth/auth';
 import {Storage,IonicStorageModule} from "@ionic/storage";
 import {JWT_OPTIONS, JwtModule} from '@auth0/angular-jwt';
 import { SignupPage } from '../pages/signup/signup';
+import {TutorialsPage} from '../pages/tutorials/tutorials';
 import {SettingsPage} from '../pages/settings/settings';
 import { NgxGaugeModule } from 'ngx-gauge';
 import { StreamingMedia } from '@ionic-native/streaming-media';
 import { EventProvider } from '../providers/event/event';
 import {BarcodeScanner} from '@ionic-native/barcode-scanner';
+import { TutorialServiceProvider } from '../providers/tutorial-service/tutorial-service';
+
 export function jwtOptionsFactory(storage: Storage) {
   return {
     tokenGetter: () => storage.get('Authorization'),
@@ -40,7 +42,7 @@ export function jwtOptionsFactory(storage: Storage) {
     LoginPage,
     SignupPage,
     SettingsPage,
-    TutorielsPage
+    TutorialsPage
   ],
   imports: [
     BrowserModule,
@@ -68,7 +70,7 @@ export function jwtOptionsFactory(storage: Storage) {
     LoginPage,
     SignupPage,
     SettingsPage,
-    TutorielsPage
+    TutorialsPage
   ],
   providers: [
     StatusBar,
@@ -79,6 +81,7 @@ export function jwtOptionsFactory(storage: Storage) {
     AuthProvider,
     StreamingMedia,
     EventProvider,
+    TutorialServiceProvider,
    ]
 })
 export class AppModule {}
