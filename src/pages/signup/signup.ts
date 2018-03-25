@@ -6,7 +6,7 @@ import {finalize} from 'rxjs/operators/finalize';
 import { NavController } from 'ionic-angular';
 import {User} from '../../models/User'
 import {LoginPage} from '../login/login';
-import {BarcodeScanner, BarcodeScannerOptions} from '@ionic-native/barcode-scanner';
+import {BarcodeScanner} from '@ionic-native/barcode-scanner';
 
 @Component({
   selector: 'page-signup',

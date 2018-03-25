@@ -18,6 +18,7 @@ import {Storage,IonicStorageModule} from "@ionic/storage";
 import {JWT_OPTIONS, JwtModule} from '@auth0/angular-jwt';
 import { SignupPage } from '../pages/signup/signup';
 import {TutorialsPage} from '../pages/tutorials/tutorials';
+import {ChangePasswordPage} from '../pages/change-password/change-password';
 import {SettingsPage} from '../pages/settings/settings';
 import { NgxGaugeModule } from 'ngx-gauge';
 import { StreamingMedia } from '@ionic-native/streaming-media';
@@ -42,7 +43,8 @@ export function jwtOptionsFactory(storage: Storage) {
     LoginPage,
     SignupPage,
     SettingsPage,
-    TutorialsPage
+    TutorialsPage,
+    ChangePasswordPage
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,8 @@ export function jwtOptionsFactory(storage: Storage) {
     LoginPage,
     SignupPage,
     SettingsPage,
-    TutorialsPage
+    TutorialsPage,
+    ChangePasswordPage
   ],
   providers: [
     StatusBar,

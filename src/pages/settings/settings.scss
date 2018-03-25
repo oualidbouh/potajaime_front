@@ -1,3 +1,25 @@
 page-settings {
 
+    .btn-icon
+    {
+        position: absolute;
+        right: 0px;
+    }
+
+    .setting-btn
+    {
+        font-size: 15px;
+        font-weight: 400;
+        vertical-align: 50%;
+    }
+
+    .item-ios
+    {
+        padding-left: 0px !important;
+    }
+
+    button.item-ios:not([detail-none]) .item-inner
+    {
+        background-image: none;
+    }
 }

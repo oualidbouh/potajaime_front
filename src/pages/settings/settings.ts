@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AuthProvider} from '../../providers/auth/auth';
 import { LoginPage } from '../login/login';
 import { App } from 'ionic-angular/components/app/app';
+import {ChangePasswordPage} from '../change-password/change-password';
 
 @IonicPage()
 @Component({
@@ -17,7 +18,12 @@ export class SettingsPage {
     this.auth = authProvider;
   }
 
-
+  goToChangePasswordPage()
+  {
+    
+    this.navCtrl.push(ChangePasswordPage);
+  }
+  
   logout()
   {
     this.auth.logout();

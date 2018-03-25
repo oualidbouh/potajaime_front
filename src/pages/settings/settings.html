@@ -6,5 +6,19 @@
 
 
 <ion-content padding>
-  Se déconnecter : <button ion-button color="danger" (click)="logout()">Déconnexion</button>
+  <ion-list>
+      <button ion-item class="setting-btn btn-change-profile" (click)="goToChangePerosnalData()">
+          <ion-icon name="person" class="btn-icon"></ion-icon>
+        <span>Modifier vos données personelles</span>
+      </button> 
+    <button ion-item class="setting-btn btn-change-profile" (click)="goToChangePasswordPage()">
+        <ion-icon name="key" class="btn-icon"></ion-icon>
+      <span>Modifier votre mot de passe</span>
+    </button>  
+    <button ion-item (click)="logout()" class="setting-btn btn-logout"> 
+      <ion-icon name="power" class="btn-icon"></ion-icon>
+      <span class="btn-text">Deconnexion</span>
+    </button>
+  </ion-list>
+   
 </ion-content>

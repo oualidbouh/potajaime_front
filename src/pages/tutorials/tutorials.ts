@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media';
-import {LoadingController, ToastController} from 'ionic-angular';
+import {ToastController} from 'ionic-angular';
 import {TutorialServiceProvider} from '../../providers/tutorial-service/tutorial-service';
 import {Tutorial} from '../../models/Tutorial';
-import {AuthProvider} from "../../providers/auth/auth";
-import {JwtHelperService} from '@auth0/angular-jwt';
-import {Storage} from "@ionic/storage";
-
+import {Storage} from '@ionic/storage';
+import{AuthProvider} from '../../providers/auth/auth';
 @IonicPage()
 @Component({
   selector: 'page-tutorials',
@@ -16,13 +14,14 @@ import {Storage} from "@ionic/storage";
 export class TutorialsPage {
 
   tutorials : Tutorial[];
-  constructor(public navCtrl: NavController, public navParams: NavParams,private streamingMedia: StreamingMedia,private toascCtrl : ToastController, private tutorialService:TutorialServiceProvider,private authProvider:AuthProvider,jwtHelper: JwtHelperService, private storage : Storage) 
+  constructor(public navCtrl: NavController, public navParams: NavParams,private streamingMedia: StreamingMedia,private toascCtrl : ToastController, private tutorialService:TutorialServiceProvider,public storage:Storage,public authProvider : AuthProvider) 
   {
     this.storage.get(this.authProvider.jwtTokenName).then(jwt => {
       this.storage.get(this.authProvider.idPotagerKey).then(idPotager => {
-        this.tutorialService.getTutorials(idPotager,this.authProvider.jwtTokenName,jwt).subscribe(tutorials => this.tutorials = tutorials);
+        this.tutorialService.getTutorials(idPotager,jwt).subscribe(tutorials => this.tutorials = tutorials);
       });
     });
+      
   }
 
 

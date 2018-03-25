@@ -4,22 +4,21 @@ import { Observable } from 'rxjs/Rx';
 import {Conf} from '../../conf/conf';
 import { Tutorial } from '../../models/Tutorial';
 import {AuthProvider} from '../auth/auth';
-/*
-  Generated class for the TutorialServiceProvider provider.
+import {Storage} from '@ionic/storage';
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class TutorialServiceProvider {
 
-  constructor(public http: Http,public authProvider:AuthProvider) {
-    console.log('Hello TutorialServiceProvider Provider');
+  jwtContent:String;
+  idPotager:any;
+
+  constructor(public http: Http,public authProvider:AuthProvider,private storage:Storage) {
+   
   }
 
-  getTutorials(idPotager:any,Authorization:any,jwtContent:any)  : Observable<Tutorial[]>
+  getTutorials(idPotager,jwt)  : Observable<Tutorial[]>
   {
-    let headers = new Headers({Authorization:jwtContent});
+    let headers = new Headers({Authorization:jwt});
     let options = new RequestOptions({headers: headers});
     return this.http.get(Conf.SERVER_URL+"tutorials/"+idPotager,options).map(res => <Tutorial[]>res.json());
   }
