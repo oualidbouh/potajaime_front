@@ -15,7 +15,7 @@ https://github.com/jhipster/jhipster-devbox
 ```
 vagrant up
 ```
-Si la commande échoue avec ce message : 
+  Si la commande échoue avec ce message : 
 ````
 The version of powershell currently installed on this host is less than the required minimum version. 
 Please upgrade or installed the installed version of powershell to the minimum required version and run the command again
@@ -24,6 +24,6 @@ Please upgrade or installed the installed version of powershell to the minimum r
   Minimum required version : 3
 ````
 
-Alors de ce cas pense à télécharger et installer la version de 4.5 de .NET depuis https://www.microsoft.com/en-us/download/confirmation.aspx?id=30653 pour pallier à ce problème.
+   Alors de ce cas pense à télécharger et installer la version de 4.5 de .NET depuis https://www.microsoft.com/en-us/download/confirmation.aspx?id=30653 pour pallier à ce problème.
 
 6. Quand le vagrant up est terminé, ouvrir virtualbox et faire clic droit > Afficher sur la VM devbox_default_xxxxxxxxxxx
