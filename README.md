@@ -27,3 +27,4 @@ Please upgrade or installed the installed version of powershell to the minimum r
    Alors de ce cas pense à télécharger et installer la version de 4.5 de .NET depuis https://www.microsoft.com/en-us/download/confirmation.aspx?id=30653 pour pallier à ce problème.
 
 6. Quand le vagrant up est terminé, ouvrir virtualbox et faire clic droit > Afficher sur la VM devbox_default_xxxxxxxxxxx
+**vagrant up**
