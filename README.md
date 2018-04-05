@@ -1,18 +1,27 @@
-# potajaime_front
+## Installation du poste
 
-This repository is the front-end part (mobile) of POTAJ'AIME application.
+L'environnement de développement est encapsulé dans une machine virtuelle ubuntu, basée sur
+https://github.com/jhipster/jhipster-devbox
 
-To run the application, lunch <code> ionic serve -l </code>.
+1. Télécharger et installer **Docker4WL** (virtualbox + vagrant + conf spécifiques à Worldline) sur https://kazan.atosworldline.com/share/data/docker/installers/windows/docker4wl-setups/stables
+
+2. Télécharger le zip du projet sags https://gitlab.kazan.atosworldline.com/sags/sags/repository/archive.zip?ref=dev
+
+3. L'extraire dans un dossier pérène (ex C:/Projets/sags)
+
+4. Aller dans sags/common/devbox
+
+5. Sur une console (cmd ou console2) lancer et attendre (~40 min pour le téléchargement de l'OS) la fin de:
 ```
 vagrant up
 ```
-Si la commande échoue avec ce message d'erreur : 
+Si la commande échoue avec ce message : 
 ````
 The version of powershell currently installed on this host is less than the required minimum version. 
 Please upgrade or installed the installed version of powershell to the minimum required version and run the command again
 
   Installed version : N/A
-  Miinimum required version : 3
+  Minimum required version : 3
 ````
 
 Alors de ce cas pense à télécharger et installer la version de 4.5 de .NET pour pallier à ce problème.
