@@ -1,30 +1,39 @@
-## Installation du poste
+## Lancement de l'application
 
-L'environnement de développement est encapsulé dans une machine virtuelle ubuntu, basée sur
-https://github.com/jhipster/jhipster-devbox
-
-1. Télécharger et installer **Docker4WL** (virtualbox + vagrant + conf spécifiques à Worldline) sur https://kazan.atosworldline.com/share/data/docker/installers/windows/docker4wl-setups/stables
-
-2. Télécharger le zip du projet sags https://gitlab.kazan.atosworldline.com/sags/sags/repository/archive.zip?ref=dev
-
-3. L'extraire dans un dossier pérène (ex C:/Projets/sags)
-
-4. Aller dans sags/common/devbox
-
-5. Sur une console (cmd ou console2) lancer et attendre (~40 min pour le téléchargement de l'OS) la fin de:
+Pour lancer l'application mobile, il suffit de se placer dans la racine du projet et lancer la commande 
 ```
-vagrant up
+ionic serve -l
 ```
-  Si la commande échoue avec ce message : 
+Un projet ionic est composé de plusieurs composants : 
+Répertoire **app** : 
+Ce répertoire contient les dépendances du projets dans le fichier **app.mocule.ts**, Un script pour pouvoir lancer l'application (Comme une méthode main en langage **C**).
+
+Répertoir **models** : 
+Ce répertoir contient les différentes entités (sous forme de classe) utilisées dans la logiques métier coté mobile.
+
+Répertoir **pages** : 
+Ce répertoir contient des sous-répertoirs qui contiennent les différentes pages **html** avec leurs **styles scss** et leur **controleurs typescript**.
+
+Pour générer un sous-répertoir il suffit de lancer la commande suivante : 
+```
+ionic g page nom-de-la-page
+```
+Une fois créée, il faut impérativement l'ajouter dans le fichier **app.module.ts** dans la section des import comme suit :
 ````
-The version of powershell currently installed on this host is less than the required minimum version. 
-Please upgrade or installed the installed version of powershell to the minimum required version and run the command again
-
-  Installed version : N/A
-  Minimum required version : 3
+import {MaPage} from '../pages/mapage/mapage';
 ````
+Ensuite dans les sections **declarations** et **entryComponents**.
 
-   Alors de ce cas pense à télécharger et installer la version de 4.5 de .NET depuis https://www.microsoft.com/en-us/download/confirmation.aspx?id=30653 pour pallier à ce problème.
+Répertoir **providers** : 
 
-6. Quand le vagrant up est terminé, ouvrir virtualbox et faire clic droit > Afficher sur la VM devbox_default_xxxxxxxxxxx
-**vagrant up**
+Ce répertoir contient les différents providers utilisés dans l'application, ces derniers dans le cas de l'applicaiton potajaime, ils permettent de lancer des appelles HTTP avec le **serveur Spring-Boot de potajaime**.
+Pour générer un provider, c'est très symple : 
+````
+ionic g provider mon-provider
+````
+Ensuite il faut ajouter le provider créé dans le fichier **app.module.ts** dans la section **providers**.
+
+Voilà un [tutoriel](https://www.sitepoint.com/angular-2-components-providers-classes-factories-values/) sympa qui explique comment en créer.
+Il est de plus conseiller d'encapsuler la logique métier côté mobile dans les providers qui seront injectés dans les controleurs Angular.
+
+Pour changer l'adresse IP du serveur a requéter par l'application mobile, il faut éditer le fichier **src/conf/conf.ts** et mettre à jour la variable *SERVER_URL*.
