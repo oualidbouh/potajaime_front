@@ -8,11 +8,11 @@ Un projet ionic est composé de plusieurs composants :
 Répertoire **app** : 
 Ce répertoire contient les dépendances du projets dans le fichier **app.mocule.ts**, Un script pour pouvoir lancer l'application (Comme une méthode main en langage **C**).
 
-Répertoir **models** : 
+Répertoire **models** : 
 Ce répertoir contient les différentes entités (sous forme de classe) utilisées dans la logiques métier coté mobile.
 
-Répertoir **pages** : 
-Ce répertoir contient des sous-répertoirs qui contiennent les différentes pages **html** avec leurs **styles scss** et leur **controleurs typescript**.
+Répertoire **pages** : 
+Ce répertoire contient des sous-répertoirs qui contiennent les différentes pages **html** avec leurs **styles scss** et leur **controleurs typescript**.
 
 Pour générer un sous-répertoir il suffit de lancer la commande suivante : 
 ```
@@ -24,9 +24,9 @@ import {MaPage} from '../pages/mapage/mapage';
 ````
 Ensuite dans les sections **declarations** et **entryComponents**.
 
-Répertoir **providers** : 
+Répertoire **providers** : 
 
-Ce répertoir contient les différents providers utilisés dans l'application, ces derniers dans le cas de l'applicaiton potajaime, ils permettent de lancer des appelles HTTP avec le **serveur Spring-Boot de potajaime**.
+Ce répertoire contient les différents providers utilisés dans l'application, ces derniers dans le cas de l'applicaiton potajaime, ils permettent de lancer des appelles HTTP avec le **serveur Spring-Boot de potajaime**.
 Pour générer un provider, c'est très symple : 
 ````
 ionic g provider mon-provider
